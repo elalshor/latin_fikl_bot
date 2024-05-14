@@ -1,6 +1,8 @@
 import telebot
 import requests
 from telebot import types
+import spacy
+nlp = spacy.load('la_core_web_lg')
 
 bot = telebot.TeleBot('ТОКЕН')
 bot.remove_webhook()
@@ -26,15 +28,9 @@ def lalala(message):
             bot.send_message(message.chat.id, 'Можете написать слово, словосочетание или предложение на латыни, а мы постараемся его перевести.')
         else:
             user_id = message.from_user.id
-            searchQuery = message.text
-            url = f"https://www.latin-is-simple.com/en/vocabulary/search/?q={searchQuery}"
-            responce = requests.get(url)
-            if not responce.json():
-                bot.send_message(message.chat.id, 'Я ничего не нашел по вашему запросу')
-            for SearchResult in responce.json():
-                title = SearchResult['title']
-                completeMessage = f"{title['rendered']} {SearchResult['link']}"
-                bot.send_message(message.chat.id, completeMessage)
+            doc = nlp(message.text)
+
+            bot.send_message(message.chat.id, f'{doc[0].text}, {doc[0].norm_}, {doc[0].lemma_}, {doc[0].pos_}')
 
 
 bot.polling(none_stop=True)
