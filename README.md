@@ -26,4 +26,6 @@ nothing here yet :(
 
 
 Ссылки на ресурсы, откуда был взят код:
+
+https://handbook.tmat.me/ru/dev/api - Telegram Bot Handbook
 https://habr.com/ru/articles/659329/ -- код тг бота
