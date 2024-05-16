@@ -14,7 +14,7 @@ from telebot.types import InlineQuery, InputTextMessageContent
 from telebot import types
 
 # Апи бота нужно получить у @BotFather в Телеграме.
-bot = AsyncTeleBot("6725473706:AAHeymN9rL2t2YGLwNTfxDQa6f8NI6AKzqA", parse_mode=None)
+bot = AsyncTeleBot("ТОКЕН", parse_mode=None)
 
 # Обработка команды /start приветствие.
 @bot.message_handler(commands=['start'])
