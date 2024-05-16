@@ -1,3 +1,7 @@
+#pip install telebot
+#pip install requests
+#pip install https://huggingface.co/latincy/la_core_web_lg/resolve/main/la_core_web_lg-any-py3-none-any.whl
+
 import telebot
 import requests
 from telebot import types
@@ -30,7 +34,12 @@ def lalala(message):
             user_id = message.from_user.id
             doc = nlp(message.text)
 
-            bot.send_message(message.chat.id, f'{doc[0].text}, {doc[0].norm_}, {doc[0].lemma_}, {doc[0].pos_}')
+            razbor = ""
+            for i in range(len(doc)):
+              razbor += f'{doc[i].text}, {doc[i].norm_}, {doc[i].lemma_}, {doc[i].pos_}'
+              razbor += '\n'
+
+            bot.send_message(message.chat.id, razbor)
 
 
 bot.polling(none_stop=True)
